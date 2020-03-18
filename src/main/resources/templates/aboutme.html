@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+    <!--导航-->
+    <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padding-tb-mini m-shadow">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="clone icon"></i>归档</a>
+                <a href="#" class="active m-item item m-mobile-hidden"><i class="info icon"></i>关于我</a><div class="right m-item item m-mobile-hidden">
+                    <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+
+    </nav>
+
+    <!--中间内容-->
+    <div class="m-padding-tb-big">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <!--左边 个人简历-->
+                <div class="eleven wide column">
+                    <div class="ui segment">
+                        <img src="../static/images/resume.png" th:src="@{/images/resume.png}" alt="" class="ui rounded image" style="width: 465px">
+                    </div>
+                </div>
+
+                <!--右边 个人信息-->
+                <div class="five wide column">
+                    <!--分类-->
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p>梁浩东，西安交通大学软件学院硕士在读</p>
+                        <p>热爱生活，积极向上</p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui orange left pointing basic label">开发</div>
+                        <div class="ui orange left pointing basic label">测试</div>
+                        <div class="ui orange left pointing basic label">思考</div>
+                    </div>
+
+                    <div class="ui attached segment">
+                        <button class="ui teal basic label m-margin-tb-tiny">Java</button>
+                        <button class="ui teal basic label">Node.js</button>
+                        <button class="ui teal basic label">Python</button>
+                        <button class="ui teal basic label m-margin-tb-tiny">MySQL</button>
+                        <button class="ui teal basic label">HTML</button>
+                        <button class="ui teal basic label m-margin-tb-tiny">SpringBoot</button>
+                        <button class="ui teal basic label">Bootstrap</button>
+                        <button class="ui teal basic label">Vue</button>
+                        <button class="ui teal basic label m-margin-tb-tiny">...</button>
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
+                        <a href="#" class="ui wechat circular icon button"><i class="wechat icon"></i></a>
+                        <a href="#" class="ui qq circular icon button" data-content="1214509185"><i class="qq icon"></i></a>
+                        <a href="#" class="ui circular icon button"><i class="weibo icon"></i></a>
+                    </div>
+                    <div class="ui wechatQR flowing popup transition hidden">
+                        <img src="../static/images/Wechat.png" th:src="@{/images/Wechat.png}" alt="" class="ui rounded image" style="width: 120px">
+                    </div>
+
+<!--                    &lt;!&ndash;二维码&ndash;&gt;-->
+<!--                    <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>-->
+<!--                    <div class="ui centered card" style="width: 11em">-->
+<!--                        <img src="../static/images/Wechat.png" alt="" class="ui rounded image">-->
+<!--                    </div>-->
+                        
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!--底部页尾-->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padding-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/Wechat.png" alt="" class="ui rounded image" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">We are bulletproof</a>
+                        <a href="#" class="item">Love Yourself</a>
+                        <a href="#" class="item">Boy with luv</a>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item"><i class="envelope outline icon"></i>&nbsp;Email: lianghd1997@163.com</a>
+                        <a href="#" class="item"><i class="comments icon"></i>&nbsp;Wechat/QQ: 1214509185</a>
+                        <a href="#" class="item"><i class="weibo icon"></i>&nbsp;Weibo: 东东咚_</a>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">lianghd</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">努力开发的准程序⚪</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020-2021 Lianghd Designed by Lianghd</p>
+        </div>
+    </footer>
+
+    <!--静态页面为注释 thymeleaf为可识别模板-->
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/prism/prism.js"></script>
+    <script src="../static/lib/tocbot/tocbot.js"></script>
+    <script src="../static/lib/QRcode/qrcode.min.js"></script>
+    <script src="../static/lib/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/jquery.waypoints/jquery.waypoints.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <!--隐藏 m-item-->
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hidden')
+        })
+
+        $('.qq').popup();
+        $('.wechat').popup({
+            popup: $('.wechatQR.popup'),
+            on:'hover'
+        });
+    </script>
+</body>
+</html>

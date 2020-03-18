@@ -1,0 +1,15 @@
+spring:
+  thymeleaf:
+    mode: HTML
+
+  # 选定当前工作的环境 dev 开发环境 pro生产环境
+  profiles:
+    active: dev
+
+  messages:
+    basename: messages
+
+comment.avatar: /images/avatar.png
+
+server:
+  port: 8181

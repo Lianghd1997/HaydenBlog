@@ -1,0 +1,6 @@
+2020-02-25 20:30:18.705  INFO 15728 --- [restartedMain] com.lianghd.myblog.MyblogApplication     : Starting MyblogApplication on LAPTOP-OP4D8Q4H with PID 15728 (F:\ForWork\SpringBoot\MyBlog\target\classes started by lenovo in F:\ForWork\SpringBoot\MyBlog)
+2020-02-25 20:30:18.707  INFO 15728 --- [restartedMain] com.lianghd.myblog.MyblogApplication     : The following profiles are active: pro
+2020-02-25 20:30:19.294  WARN 15728 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.lianghd.myblog]' package. Please check your configuration.
+2020-02-25 20:30:21.373  WARN 15728 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-02-25 20:30:21.533  WARN 15728 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-02-25 20:30:21.707  INFO 15728 --- [restartedMain] com.lianghd.myblog.MyblogApplication     : Started MyblogApplication in 3.332 seconds (JVM running for 4.918)

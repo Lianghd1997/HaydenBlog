@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+    <!--导航-->
+    <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padding-tb-mini m-shadow">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hidden"><i class="info icon"></i>关于我</a><div class="right m-item item m-mobile-hidden">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <div id="pusher" class="pusher">
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="ui text container">
+                <h1 class="ui inverted header m-text-spaced">
+                    <i class="edit outline icon"></i>Record my study life
+                </h1>
+                <h2  class="m-text-spaced m-margin-top-large">Welcome to Hayden's blog</h2>
+                <div id="toMain-btn"  class="ui huge primary button m-margin-top-large">Get Started <i class="right arrow icon"></i></div >
+            </div>
+            <div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!--中间内容-->
+    <div id="main" class="m-container m-padding-tb-big">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <!--左边 博客列表-->
+                <div class="eleven wide column">
+                    <!--头部内容-->
+                    <div class="ui top attached segment">
+                        <div class="ui middle aligned two column grid">
+                            <div class="left aligned column">
+                                <h3 class="ui header">博客</h3>
+                            </div>
+                            <div class="right aligned column">
+                                共 <h2 th:text="${page.totalElements}" class="ui orange header m-inline-block">&nbsp;14&nbsp;</h2> 篇
+                            </div>
+                        </div>
+                    </div>
+                    <!--中间内容-->
+                    <div class="ui attached segment">
+
+                        <div class="ui padded vertical segment m-padding-tb-large" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">听说过防弹少年团吗？</a></h3>
+                                    <p class="m-text-style m-margin-top" th:text="|${blog.description}......|">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <a href="#" target="_blank" class="header m-text-thin" th:text="${blog.user.nickname}">梁浩东</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-02-23</span>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i><span th:text="${blog.views}">12</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin" th:text="${blog.type.name}">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="images/7.jpg" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image" >
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!--/*-->
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/7.jpg" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/profile.png" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/7.jpg" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/7.jpg" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/7.jpg" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment m-padding-tb-large">
+                            <div class="ui stackable grid">
+                                <div class="eleven wide column m-margin-left-large">
+                                    <h3 class="ui header">听说过防弹少年团吗？</h3>
+                                    <p class="m-text-style">BTS防弹少年团将于21日下午6时向全世界同时发行第四张正规专辑《MAP OF THE SOUL:7》。讲述了BTS防弹少年团接受“想要展现给世人的我”和一直隐藏的内心阴影，还有“想要回避的我”之后，找到“完整的我”的坦诚故事。这张专辑共收录了20首歌曲，预计将展现以极高专辑完成度和进一步扩张的音乐范围而上升一个阶段的艺术家面貌。</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui mini horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://picsum.photos/id/1015/100/100" alt="" class="ui avatar image">
+                                                    <div class="content">
+                                                        <!--                                                        <a href="#" class="header">梁浩东</a>-->
+                                                        <div class="header m-text-thin">梁浩东</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2020-02-23
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i>123
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank" class="ui teal basic label m-padded-small m-text-thin">认知升级</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="four wide column">
+                                    <img src="images/7.jpg" alt="" class="ui rounded image" >
+                                    <!--                                    <a href="#" target="_blank">-->
+                                    <!--                                        <img src="https://picsum.photos/id/1015/800/400" alt="" class="ui rounded image">-->
+                                    <!--                                    </a>-->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--*/-->
+
+                    </div>
+
+                    <!--底部内容-->
+                    <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned two column grid">
+                            <div class="left aligned column">
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic button">上一页</a>
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic button">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--右边 标签分类列表-->
+                <div class="five wide column">
+                    <!--分类-->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <h4><i class="idea icon"></i>分类</h4>
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" target="_blank" th:href="@{/types/-1}">more<i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type : ${types}" th:if="${#arrays.length(type.blogs)}>0">
+                                    <span th:text="${type.name}">学习日志</span>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                </a>
+                                <!--/*-->
+                                <a href="#" class="item">
+                                    思考与感悟<div class="ui teal basic left pointing label">9</div>
+                                </a>
+                                <a href="#" class="item">
+                                    学习日志<div class="ui teal basic left pointing label">5</div>
+                                </a>
+                                <a href="#" class="item">
+                                    清单<div class="ui teal basic left pointing label">3</div>
+                                </a>
+                                <a href="#" class="item">
+                                    新年计划<div class="ui teal basic left pointing label">1</div>
+                                </a>
+                                <!--*/-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--标签-->
+                    <div class="ui segments m-margin-top-large">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <h4><i class="tags icon"></i>标签</h4>
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" target="_blank" th:href="@{/tags/-1}">more<i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui teal segment">
+                            <a href="#" target="_blank" th:href="@{/tags/{id}(id=${tag.id})}" th:each="tag : ${tags}" class="ui teal basic left pointing label m-margin-tb-tiny" th:if="${#arrays.length(tag.blogs)}>0">
+                                <span th:text="${tag.name}">BTS</span>
+                                <div class="detail" th:text="${#arrays.length(tag.blogs)}">12</div>
+                            </a>
+                            <!--/*-->
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                                Spark <div class="detail">5</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                                SpringBoot <div class="detail">3</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                                TensorFlow <div class="detail">1</div>
+                            </a>
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                                Node.js <div class="detail">3</div>
+                            </a>
+                            <!--*/-->
+                        </div>
+                    </div>
+
+                    <!--最新推荐-->
+                    <div class="ui segments m-margin-top-large">
+                        <div class="ui secondary segment">
+                            <h4><i class="bookmark icon"></i>最新推荐</h4>
+                        </div>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id = ${blog.id})}" target="_blank" class="m-black m-text-thin" th:text="${blog.title}" >听说过防弹少年团吗？</a>
+                        </div>
+                        <!--/*-->
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black m-text-thin" >听说过防弹少年团吗？</a>
+                        </div>
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black m-text-thin" >听说过防弹少年团吗？</a>
+                        </div>
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black m-text-thin" >听说过防弹少年团吗？</a>
+                        </div>
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black m-text-thin" >听说过防弹少年团吗？</a>
+                        </div>
+                        <!--*/-->
+                    </div>
+
+                    <!--二维码-->
+                    <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
+                    <div class="ui centered card" style="width: 11em">
+                        <img src="images/Wechat.png" alt="" class="ui rounded image">
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!--底部页尾-->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padding-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/Wechat.png" alt="" class="ui rounded image" style="width: 110px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">We are bulletproof</a>
+                        <a href="#" class="item">Love Yourself</a>
+                        <a href="#" class="item">Boy with luv</a>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item"><i class="envelope outline icon"></i>&nbsp;Email: lianghd1997@163.com</a>
+                        <a href="#" class="item"><i class="comments icon"></i>&nbsp;Wechat/QQ: 1214509185</a>
+                        <a href="#" class="item"><i class="weibo icon"></i>&nbsp;Weibo: 东东咚_</a>
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-spaced">lianghd</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">努力开发的准程序⚪</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020-2021 Lianghd Designed by Lianghd</p>
+        </div>
+    </footer>
+
+<!--静态页面注释 thymeleaf为可识别模板-->
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+
+    <!--隐藏 m-item-->
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hidden')
+        })
+
+        // 向下滑动
+        $('#toMain-btn').click(function () {
+            $(window).scrollTo('#main',500)
+        })
+
+        // $(document).ready(function () {
+        //     $('#toMain-btn').click(function () {
+        //         $('#pusher').hide();
+        //     })
+        // })
+
+
+    </script>
+</body>
+</html>
